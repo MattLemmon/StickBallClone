@@ -9,7 +9,7 @@ class Beginning < Chingu::GameState
     $music = Song["audio/guitar_solo.ogg"]
     $music.volume = 0.6
     after(2) { $music.play(true) }
-    after(4) { push_game_state(PreIntro) }#Chingu::GameStates::FadeTo.new(PreIntro.new, :speed => 20)) }
+    after(4) { push_game_state(OpeningCredits) }#Chingu::GameStates::FadeTo.new(PreIntro.new, :speed => 20)) }
   end
 end
 
@@ -395,16 +395,14 @@ class Intro < Chingu::GameState
 end
 
 
-
-
 #
 #  OPENING CREDITS GAMESTATE
 #    Gosu logo with animated highlights 
 class OpeningCredits < Chingu::GameState
   trait :timer
   def setup
-    self.input = { :esc => :exit, [:enter, :return] => :intro, :p => Pause, :r => lambda{current_game_state.setup} }
-    @beam = Highlight.create(:x => 66, :y => 300)  # Highlights are defined in objects.rb
+    self.input = { :esc => :exit, [:right_shift, :left_shift] => :intro, :p => Pause } #, :r => lambda{current_game_state.setup} }
+    @beam = Highlight.create(:x => 66, :y => 300)
     @beam2 = Highlight2.create(:x => 0, :y => 300)
     @beam3 = Highlight.create(:x => -500, :y => 300)
     after (3900) {
@@ -412,8 +410,8 @@ class OpeningCredits < Chingu::GameState
     }
   end
 
-  def intro # pressing 'enter' skips ahead to the Introduction
-    push_game_state(Chingu::GameStates::FadeTo.new(PreIntro.new, :speed => 11))
+  def intro
+    push_game_state(PreIntro)
   end
 
   def draw
@@ -428,7 +426,7 @@ end
 class OpeningCredits2 < Chingu::GameState
   trait :timer
   def setup
-    self.input = { :esc => :exit, [:enter, :return] => :intro, :p => Pause, :r => lambda{current_game_state.setup} }
+    self.input = { :esc => :exit, [:right_shift, :left_shift] => :intro, :p => Pause } #, :r => lambda{current_game_state.setup} }
     Sparkle.destroy_all
     @sparkle = Sparkle.create(:x => 373, :y => 301, :zorder => 20) # Sparkle is defined in objects.rb
     after(20) { @sparkle.turnify1 }
@@ -437,10 +435,10 @@ class OpeningCredits2 < Chingu::GameState
     after(900) { @sparkle.turnify4 }
     after(1900) { @sparkle.turnify5 }
     after(2200) { @sparkle.turnify6 }
-    after (2400) { push_game_state(Chingu::GameStates::FadeTo.new(PreIntro.new, :speed => 8)) }
+    after (2400) { push_game_state(PreIntro) }
   end
-  def intro # pressing 'enter' skips ahead to the Introduction
-    push_game_state(Chingu::GameStates::FadeTo.new(PreIntro.new, :speed => 11))
+  def intro
+    push_game_state(PreIntro)
   end
   def draw
     Image["objects/ruby-logo.png"].draw(0, 0, 0)
