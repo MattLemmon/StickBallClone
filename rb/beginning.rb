@@ -54,6 +54,7 @@ class PreIntro < Chingu::GameState
     ####################################################
     Chingu::Text.destroy_all 
     $window.caption = "StickBall"
+    @trans = true
     @ground_y = ($window.height * 0.95).to_i
     @nxt = false
     @song_fade = false
@@ -73,6 +74,8 @@ class PreIntro < Chingu::GameState
     end
 
     @title = Title.create
+
+    after(500) { @trans = false }
 
     after(300) {
     @t1 = Chingu::Text.create("Right Player", :y => 300, :font => "GeosansBold", :size => 52, :zorder => Zorder::GUI)
@@ -107,9 +110,7 @@ class PreIntro < Chingu::GameState
 
   def next
     if @nxt == true  # if you've already pressed 'shift' once, pressing it again skips ahead
- 
 #      $difficulty = "Normal"
-
       @nxt = false
       $click.play(0.7)
       push_game_state(Intro)
@@ -176,9 +177,11 @@ class PreIntro < Chingu::GameState
 
   def draw
     @lense_flares.draw
-    fill_gradient(:from => Color.new(255,0,0,0), :to => Color.new(255,60,60,80), :rect => [0,0,$window.width,@ground_y])
-    fill_gradient(:from => Color.new(255,100,100,100), :to => Color.new(255,50,50,50), :rect => [0,@ground_y,$window.width,$window.height-@ground_y])
-    super
+    if @trans == false
+      fill_gradient(:from => Color.new(255,0,0,0), :to => Color.new(255,60,60,80), :rect => [0,0,$window.width,@ground_y])
+      fill_gradient(:from => Color.new(255,100,100,100), :to => Color.new(255,50,50,50), :rect => [0,@ground_y,$window.width,$window.height-@ground_y])
+      super
+    end
   end
 end
 
@@ -438,7 +441,7 @@ class OpeningCredits2 < Chingu::GameState
     after (2400) { push_game_state(PreIntro) }
   end
   def intro
-    push_game_state(PreIntro)
+    push_game_state(Chingu::GameStates::FadeTo.new(PreIntro.new, :speed => 11))
   end
   def draw
     Image["objects/ruby-logo.png"].draw(0, 0, 0)
