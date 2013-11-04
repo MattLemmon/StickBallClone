@@ -59,6 +59,110 @@ end
 
 
 
+class Crowd < Chingu::GameObject
+#  attr_accessor :camera_x, :camera_y
+  def setup
+    %w[left right up down e r t y d f g h u j i k].each do |meth|
+      method = :"input_#{meth}"
+      self.define_singleton_method method do
+        @characters.each { |char| char.send(method) }
+      end
+    end
+    @x = 400
+    @y = 300
+    @rotation_center = :top_left
+    @zorder = Zorder::Background
+
+    @bg_frame  = 1
+    @bg_frames = 10
+    @bg_path   = "backgrounds/crowd/bar1.FRAME.png"
+
+    @count = 1
+
+    @image = Image["backgrounds/crowd/bar1.0.png"]
+
+    @characters = []
+
+    # 10.times{ create_characters }
+  end
+
+  def update
+    @flip ||= 0
+    @flip += 1
+    if @flip % 5 == 0
+      if @bg_frame == 0
+        @count = 1
+      elsif @bg_frame == 9
+        @count = -1
+      end
+      @bg_frame = ( @bg_frame + @count ) % @bg_frames
+#      @bg_frame = ( @bg_frame + 1 ) % @bg_frames
+      #frame = ( @bg_frame - @bg_frames + 1 ).abs
+      @image = Image[@bg_path.gsub(/FRAME/, @bg_frame.to_s)]
+    end
+  end
+
+  def create_characters # creates 15 characters (one of each) each time it is called 
+    @characters << Char1.create
+    @characters << Char2.create
+    @characters << Char3.create
+    @characters << Char4.create
+    @characters << Char5.create
+    @characters << Char6.create
+    @characters << Char7.create
+    @characters << Char8.create
+    @characters << Char9.create
+    @characters << Char10.create
+    @characters << Char11.create
+    @characters << Char12.create
+    @characters << Char13.create
+    @characters << Char14.create
+    @characters << Char15.create
+  end
+end
+
+
+class Gang < Chingu::GameObject
+#  attr_accessor :camera_x, :camera_y
+  def setup
+    %w[left right up down e r t y d f g h u j i k].each do |meth|
+      method = :"input_#{meth}"
+      self.define_singleton_method method do
+        @characters.each { |char| char.send(method) }
+      end
+    end
+    @x = 400
+    @y = 300
+#    @rotation_center = :top_left
+    @zorder = Zorder::Background
+
+    @characters = []
+
+    6.times{ create_characters }
+  end
+
+  def create_characters # creates 15 characters (one of each) each time it is called 
+    @characters << Char1.create
+    @characters << Char2.create
+    @characters << Char3.create
+    @characters << Char4.create
+    @characters << Char5.create
+    @characters << Char6.create
+    @characters << Char7.create
+    @characters << Char8.create
+    @characters << Char9.create
+    @characters << Char10.create
+    @characters << Char11.create
+    @characters << Char12.create
+    @characters << Char13.create
+    @characters << Char14.create
+    @characters << Char15.create
+  end
+end
+
+
+
+
 
 class BackgroundCrowd < Chingu::GameObject
 #  attr_accessor :camera_x, :camera_y
@@ -81,9 +185,9 @@ class BackgroundCrowd < Chingu::GameObject
 
     @bg_frame  = 0
     @bg_frames = 6
-    @bg_path   = "backgrounds/bar3_crowd1.FRAME.png"
+    @bg_path   = "backgrounds/crowd/bar1.FRAME.png"
 
-    @parallax.add_layer(image: "backgrounds/bar3_crowd1.1.png")
+    @parallax.add_layer(image: "backgrounds/crowd/bar1.0.png")
     @characters = []
     # @parallax.add_layer(repeat_y: true, :image => "backgrounds/space2.png", :damping => 12)
     # @parallax.add_layer(repeat_y: true, :image => "backgrounds/space3.png", :damping => 8)
