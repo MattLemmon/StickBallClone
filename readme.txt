@@ -109,9 +109,9 @@ Clone from github: https://github.com/mattlemmon/StickBall.git
 (If you do not have git installed, just click on the "Download
 Zip" link - right side of screen toward the bottom.)
 
-Then `cd` into the StickBall folder and execute `bundle install`.
-This will install three gems: Gosu, Chingu, and Ashton, and 
-possibly a few dependencies as well.
+Then `cd` into the StickBall folder. Install bundler by executing
+`gem install bundler`. Then execute `bundle install`. This will install
+two gems: Gosu, Chingu, and possibly a few dependencies as well.
 
 Once the gems are installed, execute:
 
@@ -158,8 +158,8 @@ Clone from github: https://github.com/mattlemmon/StickBall.git
 Zip" link - right side of screen toward the bottom.)
 
 Once you have copied the git repo, `cd` into the StickBall folder
-and execute `bundle install`. This will install three gems: Gosu,
-Chingu, and Ashton, and possibly a few dependencies as well.
+and execute `bundle install`. This will install two gems: Gosu
+and Chingu, and possibly a few dependencies as well.
 
 Once the gems are installed, execute:
 
@@ -194,8 +194,8 @@ Clone from github: https://github.com/mattlemmon/StickBall.git
 Zip" link - right side of screen toward the bottom.)
 
 Then `cd` into the StickBall folder and execute `bundle install`.
-This will install three gems: Gosu, Chingu, and Ashton, and 
-possibly a few dependencies as well.
+This will install two gems: Gosu and Chingu, and possibly a few
+dependencies as well.
 
 Once the gems are installed, execute:
 
