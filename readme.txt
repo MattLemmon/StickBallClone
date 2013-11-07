@@ -9,6 +9,7 @@ _________________________________________________________________
 To run from source code:
 
  (requires Ruby)
+ (requires Bundler `gem install bundler`)
  (Mac OSX additionally requires Xcode 4+)
 
 $ bundle install
@@ -63,14 +64,15 @@ _________________________________________________________________
 
                     QUICK INSTALL (Requires Ruby)
 
-  $ git clone https://github.com/mattlemmon/StickBall.git
+  $ git clone git@github.com:MattLemmon/StickBall.git
   $ cd StickBall
+  $ gem install bundler      # (if needed)
   StickBall$ bundle install
   Stickball$ ruby main.rb
 
 of if you prefer manual gem install (instead of bundle):
 
-  $ gem install gosu
+  $ gem install gosu -v 0.7.48
   $ gem install chingu
 
 If you don't have git installed, you can copy the repo manually at
@@ -111,7 +113,7 @@ Zip" link - right side of screen toward the bottom.)
 
 Then `cd` into the StickBall folder. Install bundler by executing
 `gem install bundler`. Then execute `bundle install`. This will install
-two gems: Gosu, Chingu, and possibly a few dependencies as well.
+two gems: Gosu (version 0.7.48), Chingu, and possibly a few dependencies as well.
 
 Once the gems are installed, execute:
 
@@ -151,6 +153,9 @@ to start with. It really shouldn't make a difference either way.
 Once Ruby is installed, you can try it out in Terminal with
 `ruby -v` and `irb` if you want.
 
+The next thing to do is to install bundler with the following command:
+$ gem install bundler
+
 Next you should:
 
 Clone from github: https://github.com/mattlemmon/StickBall.git
@@ -158,8 +163,14 @@ Clone from github: https://github.com/mattlemmon/StickBall.git
 Zip" link - right side of screen toward the bottom.)
 
 Once you have copied the git repo, `cd` into the StickBall folder
-and execute `bundle install`. This will install two gems: Gosu
+and execute `bundle install`. This will install two gems: Gosu (version 0.7.48)
 and Chingu, and possibly a few dependencies as well.
+
+
+Then `cd` into the StickBall folder. Install bundler by executing
+`gem install bundler`. Then execute `bundle install`. This will install
+two gems: Gosu (version 0.7.48), Chingu, and possibly a few dependencies as well.
+
 
 Once the gems are installed, execute:
 

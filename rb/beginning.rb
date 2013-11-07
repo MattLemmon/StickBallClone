@@ -9,7 +9,7 @@ class Beginning < Chingu::GameState
     $music = Song["audio/guitar_solo.ogg"]
     $music.volume = 0.6
     after(2) { $music.play(true) }
-    after(4) { push_game_state(OpeningCredits) }#Chingu::GameStates::FadeTo.new(PreIntro.new, :speed => 20)) }
+    after(4) { push_game_state(PreIntro) }#Chingu::GameStates::FadeTo.new(PreIntro.new, :speed => 20)) }
   end
 end
 
